@@ -30,10 +30,9 @@ public class ProdutosDAO {
         
 
      public void inserir (ProdutosDTO produtos) {
-     String sql = "INSERT INTO produtos(id, nome, valor, status) VALUES (?, ?, ?, ?)";
+     String sql = "INSERT INTO produtos1(id, nome, valor, status) VALUES (?, ?, ?, ?)";
      try { 
          PreparedStatement stmt = this.conn.prepareStatement(sql);
-         stmt.setInt(1, produtos.getId());
          stmt.setString(2, produtos.getNome());
          stmt.setInt(3, produtos.getValor());
          stmt.setString(4, produtos.getStatus());
@@ -46,7 +45,7 @@ public class ProdutosDAO {
      
     
        public void excluir (int id) {
-     String sql = "DELETE FROM produtos WHERE id = ?";
+     String sql = "DELETE FROM produtos1 WHERE id = ?";
      try { 
          PreparedStatement stmt = this.conn.prepareStatement(sql);
          stmt.setInt(1, id);
@@ -57,8 +56,34 @@ public class ProdutosDAO {
         } }
      
     
-    
-    
+   
+    public List<ProdutosDTO> getProdutos() {
+         String sql = "SELECT * FROM produtos1";
+           try { 
+         PreparedStatement stmt = this.conn.prepareStatement(sql);
+         ResultSet r = stmt.executeQuery();
+         
+         List<ProdutosDTO> listaDutos = new ArrayList<>();
+         
+         while (r.next()) {
+             ProdutosDTO produtos = new ProdutosDTO();
+          produtos.setId(r.getInt("id"));
+          produtos.setNome(r.getString("nome"));
+          produtos.setStatus(r.getString("status"));
+          produtos.setValor(r.getInt("valor"));
+          
+         listaDutos.add(produtos);
+             
+         } return listaDutos;
+         
         
-}
+        } catch(Exception e) {
+            System.out.println("Erro:" + e.getMessage());
+            return null; 
+        } 
+     }
+     }
+     
+        
+
 

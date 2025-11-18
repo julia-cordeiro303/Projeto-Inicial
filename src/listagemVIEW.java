@@ -5,15 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author Adm
- */
 public class listagemVIEW extends javax.swing.JFrame {
 
     /**
@@ -30,9 +22,9 @@ public class listagemVIEW extends javax.swing.JFrame {
         ProdutosDAO produtosDAO = new ProdutosDAO();
         
         String idprodutovenda = id_produto_venda.getText();
-        List<ProdutosDTO> listaPrrodutos = produtosDAO.listarProdutos();
-        if(listaPrrodutos == null) {
-            listaPrrodutos = new ArrayList<>();
+        List<ProdutosDTO> listaDutos = produtosDAO.getProdutos();
+        if(listaDutos == null) {
+            listaDutos = new ArrayList<>();
         }
         
         DefaultTableModel tabelaPrrodutos = (DefaultTableModel) 
@@ -40,7 +32,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         tabelaPrrodutos.setNumRows(0);
         listaProdutos.setRowSorter(new TableRowSorter(tabelaPrrodutos));
         
-        for (ProdutosDTO p : listaPrrodutos) {
+        for (ProdutosDTO p : listaDutos) {
         
         Object[] o = new Object[] {
             p.getId(),
