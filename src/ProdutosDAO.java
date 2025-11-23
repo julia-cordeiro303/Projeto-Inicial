@@ -1,12 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author Adm
- */
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -30,12 +22,12 @@ public class ProdutosDAO {
         
 
      public void inserir (ProdutosDTO produtos) {
-     String sql = "INSERT INTO produtos1(id, nome, valor, status) VALUES (?, ?, ?, ?)";
+     String sql = "INSERT INTO produtos2(nome, valor, status) VALUES (?, ?, ?)";
      try { 
          PreparedStatement stmt = this.conn.prepareStatement(sql);
-         stmt.setString(2, produtos.getNome());
-         stmt.setInt(3, produtos.getValor());
-         stmt.setString(4, produtos.getStatus());
+         stmt.setString(1, produtos.getNome());
+         stmt.setInt(2, produtos.getValor());
+         stmt.setString(3, produtos.getStatus());
          stmt.execute();
          
          
@@ -45,7 +37,7 @@ public class ProdutosDAO {
      
     
        public void excluir (int id) {
-     String sql = "DELETE FROM produtos1 WHERE id = ?";
+     String sql = "DELETE FROM produtos2 WHERE id = ?";
      try { 
          PreparedStatement stmt = this.conn.prepareStatement(sql);
          stmt.setInt(1, id);
@@ -58,7 +50,7 @@ public class ProdutosDAO {
     
    
     public List<ProdutosDTO> getProdutos() {
-         String sql = "SELECT * FROM produtos1";
+         String sql = "SELECT * FROM produtos2";
            try { 
          PreparedStatement stmt = this.conn.prepareStatement(sql);
          ResultSet r = stmt.executeQuery();
