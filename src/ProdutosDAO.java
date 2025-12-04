@@ -84,8 +84,34 @@ public class ProdutosDAO {
        catch(Exception e) { 
            System.out.println("Erro ao atualizar status do produto" + e.getMessage()); } }
     
-     }
-     
+      
+
+      public List<ProdutosDTO> getProdutos(String status) {
+           String sql = "SELECT * FROM produtos2 WHERE status LIKE ?";
+       try { 
+           PreparedStatement stmt = this.conn.prepareStatement(sql); 
+           stmt.setString(1, "%" + status + "%"); 
+           ResultSet r = stmt.executeQuery();
+           List<ProdutosDTO> listaProdutosdto = new ArrayList<>();
+           
+           while(r.next()) {
+           ProdutosDTO produtosdto = new ProdutosDTO();
+           
+           produtosdto.setNome(r.getString("nome"));
+           produtosdto.setStatus(r.getString("status"));
+           
+           listaProdutosdto.add(produtosdto);
+           }
         
+           return listaProdutosdto;
+         
+       }catch(Exception e) { 
+           return null;
+} 
+      
+      
+      } 
+    
 
-
+     
+}

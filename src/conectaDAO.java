@@ -5,15 +5,22 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Adm
+ */
 public class conectaDAO {
     
     public Connection connectDB(){
         Connection conn = null;
-        
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/script11?user=root&password=310309&useSSL=false");
-            
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/script11?allowPublicKeyRetrivial=true&user=root&password=310309&useSSL=false");
         } catch (SQLException erro){
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
         }
